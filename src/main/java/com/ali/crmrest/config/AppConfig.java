@@ -16,6 +16,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -30,7 +31,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @ComponentScan(basePackages={"com.ali.crmrest.api","com.ali.crmrest.config",
 				"com.ali.crmrest.controller","com.ali.crmrest.dao", 
 				"com.ali.crmrest.entity","com.ali.crmrest.service"})
-@PropertySource("classpath:persistence-mysql.properties")
+@PropertySource({"classpath:persistence-mysql.properties", "classpath:application.properties"})
 public class AppConfig implements WebMvcConfigurer {
 	
 	@Autowired
@@ -125,6 +126,11 @@ public class AppConfig implements WebMvcConfigurer {
 		
 		return txManager;
 		
+	}
+	
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
 	}
 	
 }

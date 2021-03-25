@@ -48,7 +48,7 @@ public class CustomerServiceManager implements CustomerService {
 	public void deleteCustomer(Integer id) {
 		
 		Customer customer = customerDAO.getCustomer(id);
-		if(customer.getId() == null) {
+		if(customer == null) {
 			throw new CustomerNotFoundException("Customer ID not found: "+id);
 		}
 		
