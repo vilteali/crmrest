@@ -47,6 +47,11 @@ public class CustomerServiceManager implements CustomerService {
 	@Transactional
 	public void deleteCustomer(Integer id) {
 		
+		Customer customer = customerDAO.getCustomer(id);
+		if(customer.getId() == null) {
+			throw new CustomerNotFoundException("Customer ID not found: "+id);
+		}
+		
 		customerDAO.deleteCustomer(id);
 	}
 
