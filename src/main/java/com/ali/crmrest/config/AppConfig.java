@@ -30,7 +30,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableTransactionManagement
 @ComponentScan(basePackages={"com.ali.crmrest.api","com.ali.crmrest.config",
 				"com.ali.crmrest.controller","com.ali.crmrest.dao", 
-				"com.ali.crmrest.entity","com.ali.crmrest.service"})
+				"com.ali.crmrest.entity","com.ali.crmrest.service",
+				"com.ali.crmrest.rest.service"})
 @PropertySource({"classpath:persistence-mysql.properties", "classpath:application.properties"})
 public class AppConfig implements WebMvcConfigurer {
 	

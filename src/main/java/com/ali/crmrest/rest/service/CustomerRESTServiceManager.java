@@ -11,16 +11,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.ali.crmrest.entity.Customer;
-import com.ali.crmrest.service.CustomerService;
 
 @Service
-public class CustomerServiceManager implements CustomerService {
+public class CustomerRESTServiceManager implements CustomerRestService {
 	
 	private RestTemplate restTemplate;
 	private String crmRestUrl;
 	private Logger logger = Logger.getLogger(getClass().getName());
 	
-	public CustomerServiceManager(RestTemplate restTemplate, @Value("{crm.rest.url})") String crmRestUrl) {
+	public CustomerRESTServiceManager(RestTemplate restTemplate, @Value("${crm.rest.url}") String crmRestUrl) {
 			this.restTemplate = restTemplate;
 			this.crmRestUrl = crmRestUrl;
 			
@@ -68,7 +67,6 @@ public class CustomerServiceManager implements CustomerService {
 		logger.info("in saveCustomer(): success");
 	}
 		
-
 	@Override
 	public void deleteCustomer(Integer id) {
 		
@@ -78,10 +76,4 @@ public class CustomerServiceManager implements CustomerService {
 		logger.info("ind deleteCustomer(): deleted customer id= "+id);
 	}
 
-	@Override
-	public List<Customer> searchCustomer(String searchCustomer) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }
